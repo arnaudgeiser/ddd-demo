@@ -1,0 +1,6 @@
+*.db
+lib
+out
+.gradle
+.idea
+build
