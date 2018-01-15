@@ -1,4 +1,4 @@
-package ch.arnaudgeiser.domain;
+package ch.arnaudgeiser.domain.ue;
 
 import org.springframework.stereotype.Repository;
 

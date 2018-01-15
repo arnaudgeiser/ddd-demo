@@ -1,4 +1,7 @@
-package ch.arnaudgeiser.domain;
+package ch.arnaudgeiser.domain.etudiants;
+
+import ch.arnaudgeiser.domain.ue.PlanEtudes;
+import org.intellij.lang.annotations.JdkConstants;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +18,11 @@ public class Etudiant {
     @Embedded
     @Column(name = "NO_SIUS")
     private NoSIUS noSIUS;
+    @Column(name = "NOM")
+    private String nom;
+    @Column(name = "PRENOM")
+    private String prenom;
+
     private transient List<Affiliation> affiliations = new ArrayList<>();
 
     private transient BulletinDeNotes bulletinDeNotes;
@@ -56,4 +64,22 @@ public class Etudiant {
     public boolean hasAlreadyAffiliationVoieEtudes(List<Affiliation> affiliations, PlanEtudes planEtudes) {
         return affiliations.stream().anyMatch(p -> p.equals(planEtudes));
     }
+
+    public Etudiant(NoSIUS noSIUS, String nom, String prenom, List<Affiliation> affiliations, BulletinDeNotes bulletinDeNotes) {
+        this.noSIUS = noSIUS;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.affiliations = affiliations;
+        this.bulletinDeNotes = bulletinDeNotes;
+    }
+
+    public Etudiant(NoSIUS noSIUS, String nom, String prenom) {
+        this.noSIUS = noSIUS;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.affiliations = new ArrayList<>();
+        this.bulletinDeNotes = BulletinDeNotes.empty();
+    }
+
+
 }

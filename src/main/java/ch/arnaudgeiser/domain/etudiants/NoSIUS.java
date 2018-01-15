@@ -1,4 +1,4 @@
-package ch.arnaudgeiser.domain;
+package ch.arnaudgeiser.domain.etudiants;
 
 import ch.arnaudgeiser.tags.ValueObject;
 

@@ -1,5 +1,6 @@
-package ch.arnaudgeiser.domain;
+package ch.arnaudgeiser.domain.etudiants;
 
+import ch.arnaudgeiser.domain.ue.VoieEtudes;
 import ch.arnaudgeiser.tags.ValueObject;
 
 import java.time.LocalDate;

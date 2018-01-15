@@ -1,8 +1,8 @@
 package ch.arnaudgeiser.infrastructure.repositories;
 
-import ch.arnaudgeiser.domain.Etudiant;
-import ch.arnaudgeiser.domain.EtudiantRepository;
-import ch.arnaudgeiser.domain.NoSIUS;
+import ch.arnaudgeiser.domain.etudiants.Etudiant;
+import ch.arnaudgeiser.domain.etudiants.EtudiantRepository;
+import ch.arnaudgeiser.domain.etudiants.NoSIUS;
 import ch.arnaudgeiser.infrastructure.state.EntityManagerState;
 
 import javax.persistence.Query;

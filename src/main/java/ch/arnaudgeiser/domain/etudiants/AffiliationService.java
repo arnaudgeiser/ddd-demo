@@ -1,9 +1,9 @@
-package ch.arnaudgeiser.domain;
+package ch.arnaudgeiser.domain.etudiants;
 
 import io.vavr.control.Either;
 import org.springframework.stereotype.Service;
 
-import ch.arnaudgeiser.infrastructure.rest.Error;
+import ch.arnaudgeiser.domain.common.Error;
 
 import java.util.Optional;
 

@@ -1,5 +1,6 @@
 package ch.arnaudgeiser.domain;
 
+import ch.arnaudgeiser.domain.etudiants.NoSIUS;
 import org.junit.Test;
 
 public class NoSIUSTest {

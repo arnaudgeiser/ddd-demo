@@ -1,10 +1,12 @@
 package ch.arnaudgeiser.infrastructure.service;
 
-import ch.arnaudgeiser.domain.AffiliationService;
-import ch.arnaudgeiser.domain.Etudiant;
-import ch.arnaudgeiser.domain.EtudiantRepository;
+import ch.arnaudgeiser.domain.etudiants.AffiliationService;
+import ch.arnaudgeiser.domain.etudiants.Etudiant;
+import ch.arnaudgeiser.domain.etudiants.EtudiantRepository;
+import ch.arnaudgeiser.domain.ue.UE;
+import ch.arnaudgeiser.domain.ue.UERepository;
 import ch.arnaudgeiser.infrastructure.state.EntityManagerState;
-import ch.arnaudgeiser.infrastructure.rest.Error;
+import ch.arnaudgeiser.domain.common.Error;
 import io.vavr.control.Either;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +16,17 @@ import java.util.List;
 import java.util.function.Supplier;
 
 @Service
-public class GestionEtudiantService {
+public class ApplicationService {
     private final EntityManagerFactory emf;
     private final EtudiantRepository etudiantRepository;
     private final AffiliationService affiliationService;
+    private final UERepository ueRepository;
 
-    public GestionEtudiantService(EntityManagerFactory emf, EtudiantRepository etudiantRepository, AffiliationService affiliationService) {
+    public ApplicationService(EntityManagerFactory emf, EtudiantRepository etudiantRepository, AffiliationService affiliationService, UERepository ueRepository) {
         this.emf = emf;
         this.etudiantRepository = etudiantRepository;
         this.affiliationService = affiliationService;
+        this.ueRepository = ueRepository;
     }
 
     public List<Etudiant> allEtudiants() {
@@ -45,4 +49,9 @@ public class GestionEtudiantService {
     }
 
 
+    public UE saveUE(UE ue) {
+        return inTransaction(() -> {
+            return ueRepository.save(ue);
+        });
+    }
 }

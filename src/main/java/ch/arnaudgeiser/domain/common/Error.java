@@ -1,4 +1,4 @@
-package ch.arnaudgeiser.infrastructure.rest;
+package ch.arnaudgeiser.domain.common;
 
 import lombok.Value;
 

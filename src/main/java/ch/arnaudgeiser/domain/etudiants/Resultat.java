@@ -1,5 +1,7 @@
-package ch.arnaudgeiser.domain;
+package ch.arnaudgeiser.domain.etudiants;
 
+import ch.arnaudgeiser.domain.ue.CodeUE;
+import ch.arnaudgeiser.domain.ue.Note;
 import ch.arnaudgeiser.tags.ValueObject;
 import lombok.Value;
 

@@ -1,4 +1,4 @@
-group 'ddd-uni-completed'
+group 'ddd-heigvd-completed'
 version '1.0-SNAPSHOT'
 
 buildscript {

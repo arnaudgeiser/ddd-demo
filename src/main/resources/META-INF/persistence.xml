@@ -6,9 +6,9 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 
              version="2.1">
     <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
-        <class>ch.arnaudgeiser.domain.Etudiant</class>
-        <class>ch.arnaudgeiser.domain.NoSIUS</class>
-        <class>ch.arnaudgeiser.domain.Test</class>
+        <class>ch.arnaudgeiser.domain.etudiants.Etudiant</class>
+        <class>ch.arnaudgeiser.domain.etudiants.NoSIUS</class>
+        <class>ch.arnaudgeiser.domain.ue.UE</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
