@@ -38,7 +38,10 @@ dependencies {
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile group: 'org.springframework', name: 'spring-core', version: '5.0.1.RELEASE'
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.0.1.RELEASE'
-
+    compile group: 'io.cucumber', name: 'cucumber-junit', version: '2.3.1'
+    compile group: 'io.cucumber', name: 'cucumber-java8', version: '2.3.1'
+    compile 'org.mockito:mockito-core:2.8.47'
+    testCompile 'junit:junit:4.12'
 }
 
 compileKotlin {
