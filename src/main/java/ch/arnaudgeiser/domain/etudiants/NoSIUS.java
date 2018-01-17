@@ -1,18 +1,20 @@
 package ch.arnaudgeiser.domain.etudiants;
 
 import ch.arnaudgeiser.tags.ValueObject;
+import lombok.Value;
 
 import javax.persistence.Embeddable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @ValueObject
+@Value
 @Embeddable
 public final class NoSIUS {
 
     private final String value;
 
-    public NoSIUS() {
+    private NoSIUS() {
         this.value = null;
     }
 

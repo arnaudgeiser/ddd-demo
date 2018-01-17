@@ -1,6 +1,7 @@
 package ch.arnaudgeiser.infrastructure.service;
 
 import ch.arnaudgeiser.domain.etudiants.AffiliationService;
+import ch.arnaudgeiser.domain.etudiants.BulletinDeNotes;
 import ch.arnaudgeiser.domain.etudiants.Etudiant;
 import ch.arnaudgeiser.domain.etudiants.EtudiantRepository;
 import ch.arnaudgeiser.domain.ue.UE;
@@ -36,6 +37,20 @@ public class ApplicationService {
     public Either<Error,Etudiant> saveEtudiant(Etudiant etudiant) {
         return inTransaction(() -> {
            return affiliationService.registerEtudiant(etudiant);
+        });
+    }
+
+    public BulletinDeNotes findBulletin(Long id) {
+        return inTransaction(() -> {
+            BulletinDeNotes bulletinDeNotes = EntityManagerState.getEntityManager().find(BulletinDeNotes.class, id);
+            return bulletinDeNotes;
+        });
+    }
+
+    public BulletinDeNotes saveBulletinNote(BulletinDeNotes bulletinDeNotes) {
+        return inTransaction(() -> {
+           EntityManagerState.getEntityManager().persist(bulletinDeNotes);
+           return bulletinDeNotes;
         });
     }
 

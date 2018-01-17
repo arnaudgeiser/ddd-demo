@@ -1,16 +1,17 @@
 package ch.arnaudgeiser.infrastructure.rest;
 
-import ch.arnaudgeiser.domain.etudiants.AffiliationService;
-import ch.arnaudgeiser.domain.etudiants.Etudiant;
-import ch.arnaudgeiser.domain.etudiants.NoSIUS;
+import ch.arnaudgeiser.domain.etudiants.*;
 import ch.arnaudgeiser.domain.common.Error;
 import ch.arnaudgeiser.domain.ue.CodeUE;
+import ch.arnaudgeiser.domain.ue.Note;
 import ch.arnaudgeiser.domain.ue.PlanEtudes;
 import ch.arnaudgeiser.domain.ue.UE;
 import ch.arnaudgeiser.infrastructure.service.ApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vavr.control.Either;
 
+
+import java.util.Arrays;
 
 import static spark.Spark.get;
 
@@ -46,6 +47,25 @@ public class Endpoint {
 
             UE ue = new UE(new CodeUE(nom.substring(0,3).toUpperCase()),nom,new PlanEtudes(planEtudes));
             return mapper.writeValueAsString(applicationService.saveUE(ue));
+        });
+
+        get("bulletins/new/:codeue/:note", (req, res) -> {
+           String codeUE = req.params("codeue");
+           String note = req.params("note");
+
+           Resultat resultat = new Resultat(new CodeUE(codeUE), new Note(Integer.parseInt(note)));
+            BulletinDeNotes bulletinDeNotes = new BulletinDeNotes(Arrays.asList(resultat));
+
+            applicationService.saveBulletinNote(bulletinDeNotes);
+
+            return mapper.writeValueAsString(bulletinDeNotes);
+        });
+
+        get("bulletins/:id", (req, res) -> {
+           String id = req.params("id");
+           BulletinDeNotes bulletin = applicationService.findBulletin(Long.valueOf(id));
+
+           return mapper.writeValueAsString(bulletin);
         });
     }
 }

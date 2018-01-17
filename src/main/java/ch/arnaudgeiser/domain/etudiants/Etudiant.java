@@ -14,7 +14,7 @@ public class Etudiant {
     @Id
     @Column(name= "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private final Long id = null;
     @Embedded
     @Column(name = "NO_SIUS")
     private NoSIUS noSIUS;
@@ -35,10 +35,6 @@ public class Etudiant {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void affiliate(Affiliation affiliation) {
@@ -81,5 +77,27 @@ public class Etudiant {
         this.bulletinDeNotes = BulletinDeNotes.empty();
     }
 
+    public String getNom() {
+        return nom;
+    }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public BulletinDeNotes getBulletinDeNotes() {
+        return bulletinDeNotes;
+    }
+
+    public void setBulletinDeNotes(BulletinDeNotes bulletinDeNotes) {
+        this.bulletinDeNotes = bulletinDeNotes;
+    }
 }
