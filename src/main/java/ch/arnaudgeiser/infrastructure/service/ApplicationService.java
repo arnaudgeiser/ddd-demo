@@ -1,19 +1,20 @@
 package ch.arnaudgeiser.infrastructure.service;
 
-import ch.arnaudgeiser.domain.etudiants.AffiliationService;
-import ch.arnaudgeiser.domain.etudiants.BulletinDeNotes;
-import ch.arnaudgeiser.domain.etudiants.Etudiant;
-import ch.arnaudgeiser.domain.etudiants.EtudiantRepository;
+import ch.arnaudgeiser.domain.etudiants.*;
+import ch.arnaudgeiser.domain.ue.CodeUE;
+import ch.arnaudgeiser.domain.ue.Note;
 import ch.arnaudgeiser.domain.ue.UE;
 import ch.arnaudgeiser.domain.ue.UERepository;
 import ch.arnaudgeiser.infrastructure.state.EntityManagerState;
 import ch.arnaudgeiser.domain.common.Error;
 import io.vavr.control.Either;
+import io.vavr.control.Option;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 @Service
@@ -67,6 +68,20 @@ public class ApplicationService {
     public UE saveUE(UE ue) {
         return inTransaction(() -> {
             return ueRepository.save(ue);
+        });
+    }
+
+    public Etudiant addNote(NoSIUS noSIUS, CodeUE codeUE, Note note) {
+        return inTransaction(() -> {
+           Optional<Etudiant> maybeEtudiant = etudiantRepository.find(noSIUS);
+           if(!maybeEtudiant.isPresent()) {
+               throw new IllegalStateException();
+           }
+           Etudiant etudiant = maybeEtudiant.get();
+           BulletinDeNotes bulletinDeNotes = etudiant.getBulletinDeNotes();
+           BulletinDeNotes newBulletinDeNotes = bulletinDeNotes.addResultat(new Resultat(codeUE, note));
+           etudiant.setBulletinDeNotes(newBulletinDeNotes);
+           return etudiant;
         });
     }
 }

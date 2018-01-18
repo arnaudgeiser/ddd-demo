@@ -41,6 +41,21 @@ public class Endpoint {
                 return mapper.writeValueAsString(either.getLeft());
             }
         });
+
+        get("/etudiants/:nosius/bulletins/:codeue/:note",(req, res) -> {
+           String noSIUSAsString = req.params("nosius");
+           String codeUEAsString = req.params("codeue");
+           Integer noteAsInteger = Integer.parseInt(req.params("note"));
+
+           NoSIUS noSIUS = new NoSIUS(noSIUSAsString);
+           CodeUE codeUE = new CodeUE(codeUEAsString);
+           Note note = new Note(noteAsInteger);
+
+            Etudiant etudiant = applicationService.addNote(noSIUS, codeUE, note);
+
+            return mapper.writeValueAsString(etudiant);
+        });
+
         get("/ue/new/:nom/:planEtudes", (req, res) -> {
            String nom = req.params("nom");
            String planEtudes = req.params("planEtudes");

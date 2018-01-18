@@ -25,7 +25,8 @@ public class Etudiant {
 
     private transient List<Affiliation> affiliations = new ArrayList<>();
 
-    private transient BulletinDeNotes bulletinDeNotes;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private BulletinDeNotes bulletinDeNotes;
 
     public Etudiant() {}
 
